@@ -8,7 +8,10 @@ var RoleSchema = new Schema({
     , user_id: Number
     , title: String
     , description: String
-    , skills:    [ {type: Schema.ObjectId, ref: 'Skills'}]
+    , skills:[{
+        name: String,
+        description: String
+      }]
     , body: String
     , from: Date
     , to: Date

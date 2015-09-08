@@ -54,7 +54,6 @@ exports.update = function(req, res) {
 // Deletes a thing from the DB.
 exports.destroy = function(req, res) {
   Thing.findById(req.params.id, function (err, thing) {
-    debugger
     if(err) { return handleError(res, err); }
     if(!thing) { return res.status(404).send('Not Found'); }
     thing.remove(function(err) {

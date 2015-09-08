@@ -8,7 +8,13 @@ angular.module('yoprojApp', [
   'btford.socket-io',
   'ui.bootstrap'
 ])
-  .config(function ($routeProvider, $locationProvider, $httpProvider) {
+  .directive('achievement', function () {
+    return {
+      template: '<p>AAAAAAAAAAAAAAAAAAAAAAAAaa s{{role.description}}</p>'
+    };
+  })
+
+.config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
       .otherwise({
         redirectTo: '/'

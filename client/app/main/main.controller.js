@@ -4,9 +4,9 @@ angular.module('yoprojApp')
   .controller('MainCtrl', function ($scope, $http, socket) {
     $scope.awesomeThings = [];
 
-    $http.get('/api/things').success(function(awesomeThings) {
-      $scope.awesomeThings = awesomeThings;
-      socket.syncUpdates('thing', $scope.awesomeThings);
+    $http.get('/api/roles').success(function(roles) {
+      $scope.roles = roles;
+      socket.syncUpdates('role', $scope.roles);
     });
 
     $scope.addThing = function() {

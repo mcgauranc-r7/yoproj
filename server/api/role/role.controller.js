@@ -63,6 +63,19 @@ exports.destroy = function(req, res) {
   });
 };
 
+exports.destroySkill = function(req, res) {
+  var  skillsId= req.params.skills_id;
+  var roleId= req.params.id
+  Role.findOneAndUpdate("55f042cfd9ae2f38228333d7", {$pull: {skills: {_id : "55f042cfd9ae2f38228333d8"}}}, function(err, data){
+     if(err) {
+
+      return res.status(500).json({'error' : 'error in deleting address'});
+    }
+
+    res.json(data);
+
+  });
+};
 function handleError(res, err) {
   return res.status(500).send(err);
 }

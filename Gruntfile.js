@@ -317,6 +317,7 @@ module.exports = function (grunt) {
     // Package all the html partials into a single javascript payload
     ngtemplates: {
       options: {
+ 	    url:    function(url) { return url.replace('.html', ''); },
         // This should be the name of your apps angular module
         module: 'yoprojApp',
         htmlmin: {

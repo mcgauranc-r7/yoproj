@@ -13,7 +13,7 @@ module.exports = function(app) {
   app.use('/api/things', require('./api/thing'));
   app.use('/api/users', require('./api/user'));
   app.use('/api/roles', require('./api/role'));
-  app.use('/api/roles/:id/skills', require('./api/skill'));
+  app.use('/api/roles/:id/skills/:skills_id/', require('./api/role'));
 
   app.use('/auth', require('./auth'));
   

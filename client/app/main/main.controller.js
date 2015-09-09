@@ -9,6 +9,15 @@ angular.module('yoprojApp')
       socket.syncUpdates('role', $scope.roles);
     });
 
+	$scope.addAchievment = function() {
+      if($scope.newAchievment === '') {
+        return;
+      }
+      $http.post('/api/things', { name: $scope.newThing });
+      $scope.newThing = '';
+    };
+
+	
     $scope.addThing = function() {
       if($scope.newThing === '') {
         return;
@@ -17,8 +26,9 @@ angular.module('yoprojApp')
       $scope.newThing = '';
     };
 
-    $scope.deleteThing = function(thing) {
-      $http.delete('/api/things/' + thing._id);
+    $scope.deleteSkill= function(role,skill) {
+
+      $http.delete('/api/roles/'+ role._id + '/skills/' + skill._id + "/");
     };
 
     $scope.$on('$destroy', function () {

@@ -11,20 +11,15 @@
         <div class="jumbotron" ng-repeat="role in roles | orderBy:'to'">
           <h1>{{role.title}}</h1>
           <p>{{role.description}}</p>
-          <div my-achmievments></div>
-          <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="skill in role.skills">
-            <li><a href="#" tooltip="{{skill.name}}">{{skill.description}}<button type="button" class="close" ng-click="deleteThing(thing)">&times;</button></a></li>
-          </ul>
+		  <div class="panel panel-default">
+			<div class="panel-body">
+			  <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="skill in role.skills">
+				<li><a href="#" tooltip="{{skill.description}}">{{skill.description}}<button type="button" class="close" ng-click="deleteSkill(role,skill)">&times;</button></a></li>
+			  </ul>
+			 </div>
+			</div>
+          <my-achmievments/>
         </div>
     </div>
   </div>
-  <form class="thing-form">
-    <label>Add a new role</label>
-    <p class="input-group">
-      <input type="text" class="form-control" placeholder="Role Title" ng-model="newThing">
-      <span class="input-group-btn">
-        <button type="submit" class="btn btn-primary" ng-click="addThing()">Add New</button>
-      </span>
-    </p>
-  </form>
 </div>

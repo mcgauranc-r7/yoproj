@@ -35,6 +35,7 @@ angular.module('yoprojApp')
          * Syncs item creation/updates on 'model:save'
          */
         socket.on(modelName + ':save', function (item) {
+          debugger
           var oldItem = _.find(array, {_id: item._id});
           var index = array.indexOf(oldItem);
           var event = 'created';
@@ -55,6 +56,7 @@ angular.module('yoprojApp')
          * Syncs removed items on 'model:remove'
          */
         socket.on(modelName + ':remove', function (item) {
+          debugger
           var event = 'deleted';
           _.remove(array, {_id: item._id});
           cb(event, item, array);

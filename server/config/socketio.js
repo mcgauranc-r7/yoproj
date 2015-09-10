@@ -16,9 +16,13 @@ function onConnect(socket) {
   socket.on('info', function (data) {
     console.info('[%s] %s', socket.address, JSON.stringify(data, null, 2));
   });
-
+  socket.on('connection', function (socket) {
+    socket.on('message', function (msg) {
+      socket.broadcast.emit('message', msg);
+    });
+  });
   // Insert sockets below
-  require('../api/thing/thing.socket').register(socket);
+  require('../api/role/role.socket').register(socket);
 }
 
 module.exports = function (socketio) {

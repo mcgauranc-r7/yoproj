@@ -11,6 +11,7 @@ router.post('/', controller.create);
 router.put('/:id', controller.update);
 router.patch('/:id', controller.update);
 router.delete('/:id', controller.destroy);
-router.delete('/:id/skills/:skills_id/', controller.destroySkill);
-router.post('/:id/achievment/', controller.addAchievment);
+router.delete('/:id/:collection/:collection_id/', controller.destroyDetail);
+
+router.post('/:id/:collection', controller.addDetail);
 module.exports = router;

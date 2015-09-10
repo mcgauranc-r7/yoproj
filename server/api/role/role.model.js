@@ -3,6 +3,7 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
+
 var RoleSchema = new Schema({
     id: Number
     , user_id: Number
@@ -12,7 +13,7 @@ var RoleSchema = new Schema({
         name: String,
         description: String
       }]
-    , achievment:[{details: String}]
+    , achievments:[{details: String}]
     , body: String
     , from: Date
     , to: Date

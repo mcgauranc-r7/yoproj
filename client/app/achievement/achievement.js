@@ -9,25 +9,34 @@ angular.module('yoprojApp')
       return {
        transclude:true,
        scope: {
-           datasource : "=",
-           event: '='
+         parentid: '=',
+         datasource : "=",
+         collection : "=",
+         identifier : "=",
+         entity : '=',
+         event: '='
       },
 
-      controller: function(  $http, $scope, $element ) {
-
-        $scope.obj="asd"
-
-        // load comments if event ID has changed
-        $scope.$watch( 'event', function() {
-          if( typeof $scope.event != 'undefined' ) {
-            debugger
-          }
+      controller: function(  $http, $scope, $element, socket ) {
+        $scope.$on('$destroy', function () {
+          socket.unsyncUpdates($scope.entity);
         });
 
+
         // post achievement to service
-        $scope.addAchievment = function() {
-            $http.post('/api/roles/'+$scope.$parent.role._id+"/achievment", { details: $scope.newThing });
+        $scope.addDetail = function() {
+          var obj = {};
+          obj[$scope.identifier] = $scope.newThing;
+          $http.post('/api/roles/'+$scope.parentid+"/" +$scope.entity,
+             obj
+            );
             $scope.newThing = '';
+            socket.syncUpdates($scope.entity);
+
+        };
+        $scope.removeDetail = function(detail) {
+          $http.delete('/api/roles/'+ $scope.parentid + '/' + $scope.entity + '/' + detail["_id"] + "/");
+          socket.syncUpdates($scope.entity);
         };
       },
       templateUrl:"app/achievement/achievmentForm.html"

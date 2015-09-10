@@ -1,5 +1,4 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
-
 <header class="hero-unit" id="banner">
   <div class="container">
   </div>
@@ -11,23 +10,15 @@
         <div class="jumbotron" ng-repeat="role in roles | orderBy:'to'">
           <h1>{{role.title}}</h1>
           <p>{{role.description}}</p>
-		  <div class="panel panel-default">
-			<div class="panel-body">
-			  <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="skill in role.skills">
-				<li><a href="#" datasource="variables"  tooltip="{{skill.description}}">{{skill.description}}<button type="button" class="close" ng-click="deleteSkill(role,skill)">&times;</button></a></li>
-			  </ul>
-		    </div>
-          </div>
-          <div my-achmievments  datasource="variables('skills')"  />
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="achievment in role.achievment">
-                <li><a href="#" tooltip="{{achievment.details}}">{{achievment.details}}<button type="button" class="close" ng-click="deleteSkill(role,achievment)">&times;</button></a></li>
-              </ul>
-            </div>
-          </div>
-          <div my-achmievments  datasource="variables('achievments')" />
+            <div my-achmievments entity="'skills'" identifier="'name'" parentid="role._id" collection="role.skills"  datasource="variables('skills')"  />
+            <div my-achmievments entity="'achievments'" identifier="'details'" parentid="role._id" collection="role.achievments" datasource="variables('achievments')" />
         </div>
     </div>
   </div>
 </div>
+<script>
+</script>
+
+Incoming Chat: <ul id="incomingChatMessages"></ul>
+<br />
+<input type="text" id="outgoingChatMessage">

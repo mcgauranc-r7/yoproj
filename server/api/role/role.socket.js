@@ -13,6 +13,10 @@ exports.register = function(socket) {
   role.schema.post('remove', function (doc) {
     onRemove(socket, doc);
   });
+  role.schema.post('update', function (doc) {
+    console.log("updating : sending event down to stream.");
+    onUpdate(socket, doc);
+  });
 }
 
 function onSave(socket, doc, cb) {
@@ -21,4 +25,9 @@ function onSave(socket, doc, cb) {
 
 function onRemove(socket, doc, cb) {
   socket.emit('role:remove', doc);
+}
+
+function onUpdate(socket, doc, cb) {
+  console.log("updating : sending event down to stream.");
+  socket.emit('role:update', doc);
 }

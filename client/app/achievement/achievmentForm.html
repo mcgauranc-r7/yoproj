@@ -1,10 +1,18 @@
-<div>
-<label> {{datasource}}</label>
-<p class="input-group">
-	<input type="text" class="form-control" placeholder="Role Title" ng-model="newThing">
-		  <span class="input-group-btn">
-			<button type="submit" class="btn btn-primary" ng-click="addAchievment()">Add New</button>
-		  </span>
-
-</p>
+<h2>{{datasource.HeadingCaption}}</h2>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="customObject in collection">
+      <li>
+        <a href="#" tooltip="{{customObject.details}}">{{customObject[identifier]}}
+          <button type="button" class="close" ng-click="removeDetail(customObject)">&times;</button>
+        </a>
+      </li>
+    </ul>
+  </div>
 </div>
+<p class="input-group">
+	<input type="text" class="form-control" placeholder="{{datasource.newButtonTitle}}" ng-model="newThing">
+    <span class="input-group-btn">
+      <button type="submit" title="{{datasource.newButtonTitle}}" class="btn btn-primary" ng-click="addDetail()">Add New</button>
+    </span>
+</p>

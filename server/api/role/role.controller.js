@@ -62,18 +62,29 @@ exports.destroy = function(req, res) {
     });
   });
 };
-
+// Deletes a skill from a role.
 exports.destroySkill = function(req, res) {
   var  skillsId= req.params.skills_id;
   var roleId= req.params.id
-  Role.findOneAndUpdate("55f042cfd9ae2f38228333d7", {$pull: {skills: {_id : "55f042cfd9ae2f38228333d8"}}}, function(err, data){
+  Role.findOneAndUpdate(roleId, {$pull: {skills: {_id : skillsId}}}, function(err, data){
      if(err) {
-
       return res.status(500).json({'error' : 'error in deleting address'});
     }
-
+    console.log("executed:")
+    console.log("skillsId:" + skillsId)
+    console.log("executed:"+ roleId)
     res.json(data);
-
+  });
+};
+// add an achievment.
+exports.addAchievment = function(req, res) {
+  var  skillsId= req.params.skills_id;
+  var roleId= req.params.id
+  Role.findOneAndUpdate(roleId, {$push: {achievment: req.body}}, function(err, data){
+    if(err) {
+      return res.status(500).json({'error' : 'error in deleting address'});
+    }
+    res.json(data);
   });
 };
 function handleError(res, err) {

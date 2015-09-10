@@ -12,6 +12,7 @@ var RoleSchema = new Schema({
         name: String,
         description: String
       }]
+    , achievment:[{details: String}]
     , body: String
     , from: Date
     , to: Date

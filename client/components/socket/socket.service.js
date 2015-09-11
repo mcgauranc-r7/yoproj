@@ -28,38 +28,54 @@ angular.module('yoprojApp')
        * @param {Array} array
        * @param {Function} cb
        */
-      syncUpdates: function (modelName, array, cb) {
+      syncUpdates: function (modelName, roles, cb) {
         cb = cb || angular.noop;
-
         /**
          * Syncs item creation/updates on 'model:save'
          */
-        socket.on(modelName + ':save', function (item) {
-          debugger
-          var oldItem = _.find(array, {_id: item._id});
-          var index = array.indexOf(oldItem);
-          var event = 'created';
-
-          // replace oldItem if it exists
-          // otherwise just add item to the collection
-          if (oldItem) {
-            array.splice(index, 1, item);
-            event = 'updated';
-          } else {
-            array.push(item);
-          }
-
-          cb(event, item, array);
+        var syncUpdatesToUI = function(item,collection) {
+          roles.every(function(role) {
+            var array =role[collection];
+            var oldItem = _.find(array, {_id: item._id});
+            var index = array.indexOf(oldItem);
+            var event = 'created';
+            // replace oldItem if it exists
+            // otherwise just add item to the collection
+            if (oldItem) {
+              array.splice(index, 1, item);
+              event = 'updated';
+            } else {
+              array.push(item);
+            }
+            cb(event, item, array);
+          });
+        };
+        socket.on('skills:save', function (item) {
+          syncUpdatesToUI(item,"skills");
+         });
+        socket.on('achievments:save', function (item) {
+          syncUpdatesToUI(item,"achievments");
         });
+
 
         /**
          * Syncs removed items on 'model:remove'
          */
-        socket.on(modelName + ':remove', function (item) {
-          debugger
-          var event = 'deleted';
-          _.remove(array, {_id: item._id});
-          cb(event, item, array);
+        var syncDeletionsToUI = function(item,collection) {
+          roles.every(function(role) {
+            var array = role[collection];
+            roles.every(function(role) {
+              var event = 'deleted';
+              _.remove(array, {_id: item._id});
+              cb(event, item, array);
+            });
+          });
+        }
+        socket.on('skills:remove', function (item) {
+          syncDeletionsToUI(item,"skills");
+        });
+        socket.on('achievments:remove', function (item) {
+          syncDeletionsToUI(item,"achievments");
         });
       },
 

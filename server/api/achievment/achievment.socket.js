@@ -4,12 +4,12 @@
 
 'use strict';
 
-var skill = require('./skill.model');
+var skill = require('./achievment.model');
 
 exports.register = function(socket) {
 
   skill.schema.post('save', function (doc) {
-    console.log("skill create event");
+    console.log("achievment create event");
     onSave(socket, doc);
   });
   skill.schema.post('remove', function (doc) {
@@ -18,9 +18,9 @@ exports.register = function(socket) {
 
 }
 function onSave(socket, doc, cb) {
-  socket.emit('skills:save', doc);
+  socket.emit('achievments:save', doc);
 }
 
 function onRemove(socket, doc, cb) {
-  socket.emit('skills:remove', doc);
+  socket.emit('achievments:remove', doc);
 }

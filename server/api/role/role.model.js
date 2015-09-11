@@ -10,10 +10,15 @@ var RoleSchema = new Schema({
     , title: String
     , description: String
     , skills:[{
-        name: String,
-        description: String
-      }]
-    , achievments:[{details: String}]
+        type: Schema.ObjectId,
+        ref: 'Skill',
+        required : false
+    }]
+    , achievments:[{
+        type: Schema.ObjectId,
+        ref: 'Achievment',
+        required : false
+    }]
     , body: String
     , from: Date
     , to: Date
@@ -21,5 +26,4 @@ var RoleSchema = new Schema({
     , location: String
     , coordinates: String
 });
-
 module.exports = mongoose.model('Role', RoleSchema);

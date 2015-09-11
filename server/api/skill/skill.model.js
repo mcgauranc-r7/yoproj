@@ -8,4 +8,4 @@ var SkillSchema = new Schema({
   description: String
 });
 
-module.exports = mongoose.model('Skills', SkillSchema);
+module.exports = mongoose.model('Skill', SkillSchema);

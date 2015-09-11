@@ -6,19 +6,23 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <h1 class="page-header">Experience:</h1>
-        <div class="jumbotron" ng-repeat="role in roles | orderBy:'to'">
+      <h1 class="page-header"></h1>
+        <div class="jumbotron" ng-repeat="role in roles">
           <h1>{{role.title}}</h1>
           <p>{{role.description}}</p>
-            <div my-achmievments entity="'skills'" identifier="'name'" parentid="role._id" collection="role.skills"  datasource="variables('skills')"  />
-            <div my-achmievments entity="'achievments'" identifier="'details'" parentid="role._id" collection="role.achievments" datasource="variables('achievments')" />
+
+            <div ng-click="selected = 'second'" ng-class="{'selected': !selected}" class="tab">
+              <h2><a href="#">{{role.company}}</a></h2>
+            </div>
+          <div ng-show="selected == 'second'" class="tab_content">
+            <map role="role" id="role._id"></map>
+          </div>
+
+          <div simple-form entity="'skills'" identifier="'name'" parentid="role._id" collection="role.skills"  datasource="variables('skills')"  />
+          <div simple-form entity="'achievments'" identifier="'details'" parentid="role._id" collection="role.achievments" datasource="variables('achievments')" />
         </div>
     </div>
   </div>
 </div>
 <script>
 </script>
-
-Incoming Chat: <ul id="incomingChatMessages"></ul>
-<br />
-<input type="text" id="outgoingChatMessage">

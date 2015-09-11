@@ -14,7 +14,7 @@ module.exports = function(app) {
   app.use('/api/users', require('./api/user'));
   app.use('/api/roles', require('./api/role'));
   app.use('/api/roles/:id/skills/:skills_id/', require('./api/role'));
-  app.use('/api/roles/:id/achievment/', require('./api/role'));
+  app.use('/api/roles/:id/skills', require('./api/role'));
 
 
   app.use('/auth', require('./auth'));

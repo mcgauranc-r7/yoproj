@@ -3,18 +3,13 @@
 angular.module('yoprojApp', [
   'ngCookies',
   'ngResource',
+  'ngMap',
   'ngSanitize',
   'ngRoute',
   'btford.socket-io',
   'ui.bootstrap'
 ])
-  .directive('achievement', function () {
-    return {
-      template: '<p>AAAAAAAAAAAAAAAAAAAAAAAAaa s{{role.description}}</p>'
-    };
-  })
-
-.config(function ($routeProvider, $locationProvider, $httpProvider) {
+ .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
       .otherwise({
         redirectTo: '/'

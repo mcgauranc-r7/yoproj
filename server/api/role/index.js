@@ -7,11 +7,11 @@ var router = express.Router();
 
 router.get('/', controller.index);
 router.get('/:id', controller.show);
-router.post('/', controller.create);
 router.put('/:id', controller.update);
 router.patch('/:id', controller.update);
 router.delete('/:id', controller.destroy);
+router.post('/',controller.create);
 router.delete('/:id/:collection/:collection_id/', controller.destroyDetail);
-
-router.post('/:id/:collection', controller.addDetail);
+router.post('/:id/achievments', controller.addAchievment);
+router.post('/:id/skills', controller.addSkill);
 module.exports = router;

@@ -3,7 +3,7 @@
 angular.module('yoprojApp', [
   'ngCookies',
   'ngResource',
-  'ngMap',
+  'uiGmapgoogle-maps',
   'ngSanitize',
   'ngRoute',
   'btford.socket-io',

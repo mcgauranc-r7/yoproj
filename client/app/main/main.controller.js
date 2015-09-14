@@ -1,7 +1,11 @@
 'use strict';
 
 angular.module('yoprojApp')
-    .controller('MainCtrl', function( $scope, $http, socket) {
+    .controller('MainCtrl', function( $scope, $http, socket,Auth) {
+      $scope.view = "listview";
+      $scope.changeView = function(){
+        $scope.view = $scope.view === "listview"?"timeline":"listview";
+      }
       $scope.awesomeThings = [];
       var vars = {
         skills: {
@@ -17,11 +21,18 @@ angular.module('yoprojApp')
         return vars[val]
 
       };
+      $scope.isLoggedIn = Auth.isLoggedIn;
+
+      $scope.show = false;
 
       $scope.stripCo = function(str) {
         return str.replace(/\s/g, '');
       }
       $scope.roles = [];
+    $scope.ga= {
+      latitude: 37.78,
+      longitude: -122.41
+    }
       $http.get('/api/roles').success(function(roles) {
         $scope.roles = roles;
         socket.syncUpdates('role', roles);
@@ -29,4 +40,6 @@ angular.module('yoprojApp')
       $scope.$on('$destroy', function() {
         socket.unsyncUpdates('thing');
       });
-    });
+
+
+  });

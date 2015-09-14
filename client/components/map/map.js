@@ -5,42 +5,30 @@
  */
 
 angular.module('yoprojApp')
-    .directive('map', function() {
+    .directive('mapWrap', function() {
         return {
-            restrict: 'E',
-            replace: true,
-            scope: true,
-            template: '<div></div>',
+            scope : {
+              role : "="
+            },
+            templateUrl: 'components/map/map.html',
             link: function($scope, element, attrs) {
-                var stripCo = function(str) {
-                    return str.replace(/\s/g, '');
-                }
-                var center = new google.maps.LatLng(stripCo($scope.role.coordinates));
-
-                var map_options = {
-                    zoom: 6,
-                    center: center,
-                    mapTypeId: google.maps.MapTypeId.SATELLITE
+              var stripCo = function(str) {
+                return str.replace(/\s/g, '');
+              }
+              $scope.getMapDetails = function(role){
+                var cordinates = stripCo(role.coordinates).split(",");
+                var map = {
+                  center: {
+                    latitude: cordinates[0],
+                    longitude: cordinates[1]
+                  },
+                  zoom: 14
                 };
-                // create map
-                var map = new google.maps.Map(document.getElementById(attrs.id), map_options);
-                // configure marker
-                var marker_options = {
-                    map: map,
-                    position: center
-                };
-
-                // create marker
-                var marker = new google.maps.Marker(marker_options);
-
-                $scope.$watch('selected', function () {
-                    debugger
-                    window.setTimeout(function(){
-
-                        google.maps.event.trigger(map, 'resize');
-                    },100);
-
-                });
+                return map;
+              }
+              $scope.options = {
+                scrollwheel: false
+              };
             }
         }
     });

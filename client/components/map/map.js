@@ -22,7 +22,10 @@ angular.module('yoprojApp')
                     latitude: cordinates[0],
                     longitude: cordinates[1]
                   },
-                  zoom: 14
+                  zoom: 14,
+                  options: {
+                    labelClass:'marker_labels',labelAnchor:'12 60',labelContent:''
+                  }
                 };
                 return map;
               }

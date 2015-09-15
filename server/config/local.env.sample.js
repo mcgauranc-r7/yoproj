@@ -18,6 +18,9 @@ module.exports = {
   GOOGLE_ID:        'app-id',
   GOOGLE_SECRET:    'secret',
 
+  
+  LINKEDIN_ID:        '77hgbjkqz3u0xi',
+  LINKEDIN_SECRET:    'MONdRYy5Truq1DLf',
   // Control debug level for modules using visionmedia/debug
   DEBUG: ''
 };

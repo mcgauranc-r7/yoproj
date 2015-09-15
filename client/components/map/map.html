@@ -1,2 +1,8 @@
 <ui-gmap-google-map center='getMapDetails(role).center' zoom='getMapDetails(role).zoom'>
+    <ui-gmap-marker coords="getMapDetails(role).center" options="getMapDetails(role).options"
+                    idkey="role._id">
+        <ui-gmap-window>
+            <div>{{role.company}}</div>
+        </ui-gmap-window>
+    </ui-gmap-marker>
 </ui-gmap-google-map>

@@ -13,7 +13,9 @@
           </button>
         </div>
       </h1>
-        <div ng-class="view === 'listview'?'jumbotron roles': 'roles'" ng-repeat="role in roles">
+
+      <div ng-class="view === 'listview'?' roles jumbotron': 'roles'" ng-repeat="role in roles">
+        <div  class="face{{$index}}">
           <h1 >{{role.title}}</h1>
           <p class="listViewOnly">{{role.description}}</p>
           <div>
@@ -25,10 +27,10 @@
           <div ng-hide="!isLoggedIn()">
             Save Location
           </div>
-
-      <div simple-form entity="'skills'" identifier="'name'" parentid="role._id" collection="role.skills"  datasource="variables('skills')"  />
+          <div simple-form entity="'skills'" identifier="'name'" parentid="role._id" collection="role.skills"  datasource="variables('skills')"  />
           <div simple-form entity="'achievments'" identifier="'details'" parentid="role._id" collection="role.achievments" datasource="variables('achievments')" />
         </div>
+      </div>
     </div>
   </div>
 </div>

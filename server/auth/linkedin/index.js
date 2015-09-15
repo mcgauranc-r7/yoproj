@@ -7,12 +7,12 @@ var auth = require('../auth.service');
 var router = express.Router();
 
 router
-  .get('/', passport.authenticate('sagecrm', {
+  .get('/', passport.authenticate('linkedin', {
     failureRedirect: '/signup',
     session: false
   }))
 
-  .get('/callback', passport.authenticate('sagecrm', {
+  .get('/callback', passport.authenticate('linkedin', {
     failureRedirect: '/signup',
     session: false
   }), auth.setTokenCookie);

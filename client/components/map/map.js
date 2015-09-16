@@ -15,20 +15,18 @@ angular.module('yoprojApp')
               var stripCo = function(str) {
                 return str.replace(/\s/g, '');
               }
-              $scope.getMapDetails = function(role){
-                var cordinates = stripCo(role.coordinates).split(",");
-                var map = {
-                  center: {
+            var cordinates = stripCo($scope.role.coordinates).split(",");
+            $scope.map = {
+                center: {
                     latitude: cordinates[0],
                     longitude: cordinates[1]
-                  },
-                  zoom: 14,
-                  options: {
+                },
+                zoom: 14,
+                options: {
                     labelClass:'marker_labels',labelAnchor:'12 60',labelContent:''
-                  }
-                };
-                return map;
-              }
+                }
+            };
+
               $scope.options = {
                 scrollwheel: false
               };

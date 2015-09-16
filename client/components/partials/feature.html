@@ -1,0 +1,10 @@
+<div ng-class="view === 'listview'?' roles jumbotron': 'roles'" ng-repeat="role in roles">
+    <div  class="face{{$index}}">
+        <h1 >{{role.title}}</h1>
+        <p class="listViewOnly">{{role.description}}</p>
+        <div>
+            <h2><a ng-click="isDisplayed = !isDisplayed" href="#">{{role.company}}</a></h2>
+        </div>
+
+    </div>
+</div>

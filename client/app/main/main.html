@@ -6,33 +6,23 @@
 <div class="container" ng-init="view = 'listview'" ng-class="view === 'listview' ?'timeline': 'listview'">
   <div class="row">
     <div class="col-lg-12">
-      <h1 class="page-header">
-        <div class="">
-          <button ng-click="changeView()" type="button" class="btn btn-default" aria-label="Left Align">
+      <ul class="nav nav-tabs">
+        <li role="presentation" ui-sref-active="active">
+          <a ui-sref="main.profile" >
+            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+          </a>
+        </li>
+        <li role="presentation" ui-sref-active="active">
+          <a ui-sref="main.feature">
             <span class="glyphicon glyphicon-film" aria-hidden="true"></span>
-          </button>
-        </div>
+          </a>
+        </li>
+      </ul>
+      <h1 class="page-header">
+        <div id="content" class="content" ui-view></div>
       </h1>
 
-      <div ng-class="view === 'listview'?' roles jumbotron': 'roles'" ng-repeat="role in roles">
-        <div  class="face{{$index}}">
-          <h1 >{{role.title}}</h1>
-          <p class="listViewOnly">{{role.description}}</p>
-          <div>
-            <h2><a ng-click="isDisplayed = !isDisplayed" href="#">{{role.company}}</a></h2>
-          </div>
-          <div ng-if="isDisplayed" >
-            <map-wrap role="role"></map-wrap>
-          </div>
-          <div ng-hide="!isLoggedIn()">
-            Save Location
-          </div>
-          <div simple-form entity="'skills'" identifier="'name'" parentid="role._id" collection="role.skills"  datasource="variables('skills')"  />
-          <div simple-form entity="'achievments'" identifier="'details'" parentid="role._id" collection="role.achievments" datasource="variables('achievments')" />
-        </div>
       </div>
     </div>
   </div>
 </div>
-<script>
-</script>

@@ -4,7 +4,7 @@
     <div class="panel-body">
       <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="customObject in collection">
         <li>
-          <a href="#" tooltip="{{customObject.details}}">{{customObject[identifier]}}
+           <a href="#" tooltip="{{customObject.details}}">{{customObject[identifier]}}
             <button ng-hide="isLoggedIn()" type="button" class="close" ng-click="removeDetail(customObject)">&times;</button>
           </a>
         </li>

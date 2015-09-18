@@ -38,3 +38,51 @@
     opacity: 1; }
 .main.ng-leave-active {
     opacity: 0; }
+.feature-content {
+    display: flex;
+    align-items : center;
+    justify-content : center;
+
+}
+.feature {
+    position: absolute;
+    text-align: center;
+    width: 13em;
+    height: 13em;
+    padding: 1em;
+    border-radius: 6.5em;
+    left: -3.5em;
+    background-color: #eeeeee;
+    :after {
+        
+    }
+    .feature-text {
+        position: relative;
+        top: 3em;
+    }
+    .span {
+        font-size: 5em;
+    }
+}
+@colors : #ED5565, #A0D468, #F6BB42, #5D9CEC, green ,blue;
+/*  number of iterations for the mixin */
+@iterations: 6;
+
+.mixin-loop(@i) when (@i > 0) {
+    .define(@var) {
+        transform: rotate( @{var} deg  );
+    }
+    .feature{
+        .define(@i )
+
+    }
+    /* print another class */
+    .feature@{i}{
+
+        background-color: extract(@colors,(@i*100))
+    }
+    .mixin-loop(@i - 1);
+}
+
+.mixin-loop(@iterations);
+

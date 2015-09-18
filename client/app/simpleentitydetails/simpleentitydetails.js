@@ -17,7 +17,6 @@ angular.module('yoprojApp')
                 event: '='
             },
             controller: function($http, $scope, $element, socket,Auth) {
-
                 $scope.$on('$destroy', function() {
                     socket.unsyncUpdates($scope.entity);
                 });
@@ -32,6 +31,7 @@ angular.module('yoprojApp')
                     $scope.newThing = '';
                 };
                 $scope.removeDetail = function(detail) {
+                    debugger
                     $http.delete('/api/roles/' + $scope.parentid + '/' + $scope.entity + '/' + detail["_id"] + "/");
                 };
             },
